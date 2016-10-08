@@ -1,9 +1,8 @@
 listTest:
-	gcc -c main.c list.c
+	gcc main.c list.c -o listTest
 
 run:
-	gcc main.o list.o
-	./a.out
+	./listTest
 
 clear:
 	rm *~
