@@ -1,5 +1,5 @@
 listTest:
-	gcc -c -o main.c list.c
+	gcc main.c list.c
 
 run:
 	./a.out
