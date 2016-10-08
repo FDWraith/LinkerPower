@@ -6,13 +6,34 @@ struct node{ char i; struct node *next;};
 void print_list(struct node *n){
   char data[256] = "";
   char i = 0;
-  do{
+  //printf("Got to this point 1\n");
+  while( n != 0){
     data[i] = (*n).i;
+    //printf("Current char:[%c]\n",data[i]);
     i++;
     n = (*n).next;
-  }while( (*n).next != 0);//while there is a next node
-  data[i] = 0;
-  printf("Resultant String:[%s]",data);
+  }
+  if(i != 0){
+    data[i] = 0;
+  }
+  printf("Resultant String:[%s]\n",data);
 }
 
+struct node * insert_front(struct node *current, char newDatum){
+  struct node * newBegin = (struct node *)malloc(sizeof(struct node));
+  (*newBegin).next = current;
+  (*newBegin).i = newDatum;
+  return newBegin;
+}
+
+struct node * free_list(struct node *current){
+  if(current != 0){
+    free_list((*current).next);
+    free(current);
+    return 0;
+  }else{
+    free(current);
+    return 0;
+  }
+}
 

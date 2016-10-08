@@ -5,7 +5,14 @@
 
 int main(){
   struct node *s = (struct node *)malloc(sizeof(struct node));
-  (*s).i = 'a';
+  //(*(*s).next).i = 'b';
+  print_list(s);
+  s = insert_front(s,'a');
+  print_list(s);
+  s = insert_front(s,'b');
+  print_list(s);
+  s = free_list(s);
+  printf("Pointer to s:[%p]\n",s);
   print_list(s);
   return 0;
 }
