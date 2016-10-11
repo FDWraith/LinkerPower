@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 struct node{ char i; struct node *next;};
 
@@ -16,7 +17,7 @@ void print_list(struct node *n){
   if(i != 0){
     data[i] = 0;
   }
-  printf("Resultant String:[%s]\n",data);
+  printf("Resultant String:[%s] Its Length:[%d]\n",data,strlen(data));
 }
 
 struct node * insert_front(struct node *current, char newDatum){
@@ -28,12 +29,15 @@ struct node * insert_front(struct node *current, char newDatum){
 
 struct node * free_list(struct node *current){
   if(current != 0){
-    free_list((*current).next);
     free(current);
-    return 0;
+    current = free_list((*current).next);
+    //printf("the current pointer:[%p]\n", current);
+    //printf("the next pointer:[%p]\n", (*current).next);
+    return &(*current);
   }else{
+    //printf("This happened\n");
     free(current);
-    return 0;
+    return current;
   }
 }
 
